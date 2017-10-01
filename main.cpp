@@ -124,18 +124,19 @@ class SDL {
 			if (ants.size() > 0) {
 					updateAnts();
 			}
-			//if (SDL_GetTicks() - fpsTimer > fps) {
+			if (SDL_GetTicks() - fpsTimer > fps) {
 				
 				SDL_RenderClear(renderer);
 				for (int x = 0; x < windowWidth; ++x) {
 					for (int y = 0; y < windowHeight; ++y) {
+
 						if (screen[x][y]) {
 							SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 							SDL_RenderDrawPoint(renderer, x, y);
 						}
 					}
 				}
-			//}
+			}
 			
 			SDL_RenderPresent(renderer);
 			fpsTimer = SDL_GetTicks();
@@ -173,6 +174,7 @@ int main(int argc, char** argv) {
 	
 	for (SDL_Event* event = sdl.eventUpdate(); event->type != SDL_QUIT; sdl.eventUpdate()) {
 		sdl.screenUpdate(event);
+		SDL_Delay(1);
 		//sdl.updateAnts();
 		//Event handling
 		switch (event->type) {
